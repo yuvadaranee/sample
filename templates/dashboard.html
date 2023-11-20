@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <title>Book Flight</title>
+</head>
+<body>
+    <div class="head">
+    <div>
+    <h1>User Dashboard</h1>
+    <p class='welcome'>Welcome, {{ user.user }}!</p>
+    </div>
+    <div class="nav">
+        <a class="navele" class='my_booking' href="{{url_for('my_booking')}}">Previous Bookings..</a>
+        <a class="navele" class='logout' href="{{url_for('logout')}}">Logout</a>
+    </div>
+    </div>
+
+    <h2>Book your seats here...</h2>
+
+    <form class="search" method="POST" action="{{ url_for('search_flight') }}">
+        <div class="element">
+        <label for="name">Flight Name:</label>
+        <input type="text" id="name" name="name">
+        </div>
+        <div class="element">
+        <label for="number">Flight Number:</label>
+        <input type="text" id="number" name="number">
+        </div>
+        <div class="element">
+        <label for="start">Start Point:</label>
+        <input type="text" id="start" name="start">
+        </div>
+        <div class="element">
+        <label for="end">Destination:</label>
+        <input type="text" id="end" name="end">
+        </div>
+        <div class="element">
+        <button type="submit">Search Flights</button>
+        </div>
+    </form>
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+
+    {% if flights %}
+    <form class="book" method="POST" action="{{ url_for('book_flight') }}">
+        <h3>Available Flights</h3>
+        <table>
+            <tr>
+                <th>Flight Name</th>
+                <th>Flight Number</th>
+                <th>Start Point</th>
+                <th>End Point</th>
+                <th>Available Seats</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Book Seats</th>
+            </tr>
+            
+            {% for flight in flights %}
+                <tr>
+                    <td>{{ flight.name }}</td>
+                    <td>{{ flight.number }}</td>
+                    <td>{{ flight.start }}</td>
+                    <td>{{ flight.end }}</td>
+                    <td>{{ flight.seats }}</td>
+                    
+                    <input type="hidden" id="book_user" name="book_user" value="{{user.user}}">
+                    <input type="hidden" id="book_number" name="book_number" value="{{flight.number}}">
+                    <input type="hidden" id="book_name" name="book_name" value="{{flight.name}}">
+                    <input type="hidden" id="book_start" name="book_start" value="{{flight.start}}">
+                    <input type="hidden" id="book_end" name="book_end" value="{{flight.end}}">
+                    <td>
+                        <input type="date" id="book_date" name="book_date" required>
+                    </td>
+                    <td>
+                        <input type="time" id="book_time" name="book_time" required>
+                    </td>
+                    <td>
+                        <input type="number" id="book_seats" name="book_seats" min="1" max="{{ flight.seats }}" required>
+                    </td>
+                    
+                </tr>
+            {% endfor %}
+        
+        </table>
+        <button type="submit">Book Tickets</button>
+    </form>
+    {% endif %}
+
+    
+</body>
+</html>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        
+        margin: 0;
+        padding: 0;
+    }
+    .head {
+        display: grid;
+        grid-template-columns: repeat(2, 10fr);
+    }
+    .nav {
+    overflow: hidden;
+    display:flexbox;
+    margin-left:50%;
+    margin-top:10px;
+    }
+    .nav a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+    border-radius:5px;
+    margin:5px 5px 5px;
+    background-color:#333;
+    }
+    .nav a:hover {
+    background-color: #ddd;
+    color: black;
+    }
+    
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    
+    .welcome {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #666;
+    }
+    
+    .search {
+        max-width: 90%;
+        margin: 10px auto;
+        padding: 10px;
+        display: grid;
+        grid-template-columns: repeat(5, 10fr);
+    }
+    
+    .search label {
+        display: block;
+        margin-bottom: 5px;
+        color: #333;
+    }
+    
+    input {
+        width: 90%;
+        padding: 10px;
+        margin-bottom: 0px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    .search button {
+        width: 100%;
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px;
+        margin-top: 8px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    
+    .book button {
+        background-color: #6280e3;
+        text-align: left;
+        padding: 10px;
+        font-size: 16px;
+        color: white;
+        cursor: pointer;
+        border: 1px solid #CCCCCC;
+        margin-left: 45%;
+        border-radius: 5px;
+    }
+    
+    .book button:hover {
+        background-color: #333;
+    }
+    
+    .search button:hover {
+        background-color: #45a049;
+    }
+   
+    
+    .logout {
+        display: block;
+        margin-top: 20px;
+        color: #333;
+        text-decoration: none;
+        font-size: 16px;
+    }
+    
+    @media screen and (max-width: 568px) {
+        form {
+            padding: 0 20px;
+            grid-template-columns: repeat(2, 10fr);
+        }
+    
+        table {
+            overflow-x: auto;
+        }
+    }
+    
+ 
+    
+</style>

@@ -1,0 +1,39 @@
+body{
+    background-image: url('https://img.freepik.com/premium-photo/blank-green-paper-texture-background_7190-886.jpg?size=626&ext=jpg&ga=GA1.2.70094477.1694591234&semt=ais');
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+/* CSS for a table with a white background */
+.table-container {
+    
+    border-radius: 5px;
+    overflow-x: auto;
+}
+table {
+    width: 95%;
+    margin: 3%;
+    border-collapse: collapse;
+    background-color: #FFFFFF; /* Set the background color to white */
+}
+
+/* Style for table headers */
+th {
+    background-color: #6280e3; /* Light gray background for header cells */
+    text-align: left;
+    padding: 10px;
+    color: white;
+    border: 1px solid #CCCCCC; /* Add a border to header cells */
+}
+
+/* Style for table data cells */
+td {
+    padding: 10px;
+    border: 1px solid #CCCCCC; /* Add a border to data cells */
+}
+
+/* Add some hover effect to rows for better readability */
+tr:hover {
+    background-color: #F0F0F0; /* Light gray background on hover */
+}

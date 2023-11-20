@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+    
+</head>
+<body>
+
+    <p class='header'>FLIGHT BOOKING</p>  
+
+    <a class='homepage' href="{{url_for('index')}}">Home Page</a>
+
+    <p class='title'>Create your account now to book your seats in your preferred flight to enjoy your journey!</p>
+
+    
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+    
+    <div class="login-box">
+            <h1><u>Sign Up</u></h1>
+            <form action="/signup" method="POST">
+                <p>Email</p>
+                <input class='textbox' type="email" placeholder="Enter Username" id="username" name="username" required>
+                <p>Password</p>
+                <input class='textbox' type="password" placeholder="Enter Password" id="password" name="password" required>
+                <br>
+                <input type="submit" name="submit" value="Sign Up">
+            </form>
+            <h3>Already have an account..? 
+                <a class='login' href="{{url_for('login')}}"><u>Login here</u></a>
+            </h3>
+            
+    </div>
+    
+
+    <div class='footer'>
+        <h2>Contact Us</h2>
+        <p>© 2023 Flight Booking</p>
+        <p><u><b>Helpline:</u> +91-11-23978046 (Toll Free - 1075 ) | <u>Technical Helpline:</u> 0120-4783222</p>
+    </div>
+
+</body>
+</html>
+
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+    }
+    .homepage {
+        font-size: 20px;
+        border:2px solid ;
+        background-color:#6280e3;;
+        color:white;
+        text-decoration:none;
+        top: 9%;
+        left: 86%;
+        padding:4px;
+        position: absolute;
+        hover: #ffffff;
+        border-radius: 15px;
+    }
+
+    p{
+        font-family: sans-serif;
+        font-size: 18px;
+    }
+
+    .header{
+        text-align: center;
+        font-size: 35px;
+        font-weight: bold;    
+    }
+
+    .footer{
+        text-align: center;
+        
+        margin-top: 580px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        display: block;
+        padding: 5px 10px 5px 10px;
+        padding-bottom: 2px;
+        padding-top: 2px;
+    }
+
+    .title{
+       
+        text-align: center;
+        font-size: 25px;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: #6280e3;;
+        padding: 10px 10px 10px 10px;
+        border-radius: 5px;
+        border: 1px solid #666666;
+
+    }
+    
+    .login-box{
+        width: 320px;
+        height: auto;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        top: 65%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        box-sizing: border-box;
+        padding: 45px 30px;
+        border-radius: 18px;
+    }
+    
+    h1{
+        margin-top: -35px;
+        padding: 0 0 20px;
+        text-align: center;
+        font-size: 22px;
+    }
+    h3{
+        color:white;
+        font-size:13px;
+    }
+
+    .login-box p{
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+    }
+    .login-box input{
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    
+    .login-box input[type="submit"]
+    {
+        border: none;
+        outline: none;
+        height: 40px;
+        background: #1c8adb;
+        color: #fff;
+        font-size: 18px;
+        border-radius: 20px;
+        width: 100%;
+    }
+    .login-box input[type="submit"]:hover
+    {
+        cursor: pointer;
+        background: #39dc79;
+        color: #000;
+    }
+    
+    .login-box a{
+        text-decoration: none;
+        font-size: 14px;
+        color: #fff;
+    }
+    .login-box a:hover
+    {
+        color: #39dc79;
+    }
+
+    .textbox{
+        background-color: #ffffff;
+        border-radius: 5px;
+        border: 1px solid #666666;
+        padding: 5px 10px 5px 10px;
+    }
+
+    .error{
+        position: absolute;
+        text-align: center;
+        top: 23%;
+        left: 40%;
+        color: red;
+        background-color: #ffffff;
+        width: 320px;
+        border-radius: 5px;
+        border: 3px solid #666666;
+        padding: 5px 10px 5px 10px;
+    }
+
+
+</style>
+

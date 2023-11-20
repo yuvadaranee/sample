@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <title>Book Flight</title>
+</head>
+<body>
+    <div class="head">
+        <div>
+        <h1>User Dashboard</h1>
+        <p class='welcome'>Welcome!</p>
+        </div>
+        <div class="nav">
+            <a href="{{ url_for('dashboard') }}">Go back to Dashboard</a>
+            <a class="navele" class='logout' href="{{url_for('logout')}}">Logout</a>
+        </div>
+        </div>
+
+    {% if booking %}
+    <div class="confirm">
+    <h3>Successfully booked!!!</h3>
+    <h5>Your Registration Number: {{booking.hash}}<br>
+        Your Name:{{booking.name}}<br>
+        Booked Flight Number:{{booking.number}}
+        Booked Flight Name:{{booking.name}}<br>
+        From:{{booking.start}}
+        To:{{booking.end}}<br>
+        Date:{{booking.date}}
+        Time of Departure:{{booking.booked_time}}
+        Number of seats booked:{{booking.booked_seats}}
+    </h5>
+</div>
+    <p>Your booking is confirmed! Thank you for choosing our service.</p>
+    {% endif %}
+
+
+    {% if value %}
+    <h2>Your previous bookings are listed down!!</h2>
+    <table>
+        <tr>
+            <th>Registration</th>
+            <th>Flight Name</th>
+            <th>Flight Number</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Number of Seats</th>
+        </tr>
+        <tr>
+            {% for b in bookings %}
+            <tr>
+            <td>{{b.hash}}</td><td>{{b.name}}</td><td>{{b.number}}</td>
+            <td>{{b.start}}</td><td>{{b.end}}</td><td>{{b.date}}</td>
+            <td>{{b.booked_time}}</td><td>{{b.booked_seats}}</td>
+            </tr>
+            {% endfor %}
+        </tr>
+    </table>
+    {% endif %}
+
+    
+</body>
+</html>
+
+
+<style>
+    body {
+        background-color: #f2f2f2;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+.confirm {
+    max-width: 600px; 
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+/* Heading styles */
+.confirm h3 {
+    color: #333; /* Heading color */
+}
+
+/* Content styles */
+.confirm h5 {
+    color: #666; /* Text color */
+    margin-top: 20px; /* Add space above the content */
+    line-height: 1.5; /* Set the line height for better readability */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .confirm {
+        max-width: 100%; /* Set the container width to 100% for smaller screens */
+        border-radius: 0; /* Remove rounded corners for smaller screens */
+        box-shadow: none; /* Remove box shadow for smaller screens */
+    }
+}
+
+
+    .head {
+        display: grid;
+        grid-template-columns: repeat(2, 10fr);
+    }
+    .nav {
+    overflow: hidden;
+    display:flexbox;
+    margin-left:50%;
+    margin-top:10px;
+    }
+    .nav a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+    border-radius:5px;
+    margin:5px 5px 5px;
+    background-color:#333;
+    }
+    .nav a:hover {
+    background-color: #ddd;
+    color: black;
+    }
+    
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    
+    .welcome {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #666;
+    }
+    h1 {
+        text-align: center;
+        color: #666666;
+    }
+
+    h2 {
+        color: #666666;
+        display:absolute;
+        top:50%;
+    }
+
+    .welcome{
+        text-align: center;
+        font-size: 20px;
+        color: #666666;
+    }
+
+    p {
+        color: #666666;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        padding: 8px;
+        margin-bottom: 7px;
+        background-color: #ffffff;
+        color: #666666;
+        border-radius: 5px;
+    }
+
+   
+
+    a {
+        color: #666666;
+    }
+
+    .error{
+
+        text-align:center;
+
+        font-size: 20px;
+    }
+
+
+
+</style>

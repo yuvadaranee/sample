@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+
+    <h2>Admin Dashboard</h2>
+    <a class='logout' href="{{url_for('logout')}}">Logout</a>
+
+    {% if msg %}
+    <h4>{{msg}}<h4>
+    {% endif %}
+    
+    <div class="add_flight">
+    <h2>Add New Flight</h2>
+    <form method="POST" action="{{ url_for('add_flight') }}">
+        <label for="name">Flight Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="number">Flight Number:</label>
+        <input type="text" id="number" name="number" required>
+
+        <label for="start">Start Point:</label>
+        <input type="text" id="start" name="start" required>
+        
+        <label for="end">End Point:</label>
+        <input type="text" id="end" name="end" required>
+        
+        <label for="time1">Departure Time 1:</label>
+        <input type="text" id="time1" name="time1" required>
+
+        <label for="time2">Departure Time 2:</label>
+        <input type="text" id="time2" name="time2" required>
+
+        <button type="submit" id="submit" name="submit">Add Flight</button>
+    </form>
+    </div>  
+
+   
+</body>
+</html>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    h2{
+        color:#666666;
+        text-align:center;
+    }
+    .logout {
+        font-size: 20px;
+        border:2px solid ;
+        background-color:#6280e3;
+        color:white;
+        text-decoration:none;
+        top: 9%;
+        left: 86%;
+        padding:4px;
+        position: absolute;
+        hover: #ffffff;
+        border-radius: 15px;
+    }
+    
+    .container {
+        max-width: 100px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .add_flight {
+        background-color: #fff;
+        border-radius: 8px;
+        width:50%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 20px auto;
+    }
+    
+    form {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0px; 
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+    input {
+        width: calc(100% - 50px); 
+        padding: 10px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    button {
+        grid-column: span 2; 
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    
+    button:hover {
+        background-color: #45a049;
+    }
+    
+    
+    @media screen and (max-width: 768px) {
+        form {
+            grid-template-columns: 1fr;
+        }
+    }    
+    
+</style>
